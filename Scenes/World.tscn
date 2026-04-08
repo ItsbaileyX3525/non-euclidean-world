@@ -76,15 +76,50 @@ _surfaces = [{
 script = ExtResource("5_y7y61")
 size = Vector3(2, 2.5, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uo7di"]
-size = Vector3(2.3094482, 2.5, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn06e"]
+size = Vector3(1.9919739, 2.5, 0.7397461)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p70al"]
 albedo_color = Color(0.59607846, 0.36862746, 0.03137255, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_45d1s"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti1bm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7yo87"]
+size = Vector3(1.9809036, 2.5, 0.68408203)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45d1s"]
+albedo_color = Color(0.37413925, 0.37413928, 0.37413922, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_y7y61"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y7y61"]
+size = Vector3(0.3375244, 3.170044, 11.953674)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q2d71"]
+size = Vector3(0.3375244, 2.9649353, 12.255142)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p70al"]
+_surfaces = [{
+"aabb": AABB(-1, -1.25, -1, 2, 2.5, 1),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AACAPwAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAIA/AACAPw=="),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAQABAABAAUAAQADAAUABQADAAcAAwACAAcABwACAAYAAgAAAAYABgAAAAQABAAFAAYABgAFAAcAAAABAAIAAgABAAMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AACAvwAAoD8AAAAAAACAPwAAoD8AAAAAAACAvwAAoL8AAAAAAACAPwAAoL8AAAAAAACAvwAAoD8AAIC/AACAPwAAoD8AAIC/AACAvwAAoL8AAIC/AACAPwAAoL8AAIC//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgA==")
+}]
+script = ExtResource("5_y7y61")
+size = Vector3(2, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uo7di"]
+size = Vector3(2.1726284, 2.3321228, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_op4cu"]
+size = Vector3(2.272161, 2.3321228, 1)
 
 [node name="World" type="Node3D" unique_id=1658901549]
 
@@ -161,11 +196,12 @@ material_override = SubResource("StandardMaterial3D_5nsto")
 mesh = SubResource("BoxMesh_gjpho")
 
 [node name="TeleportPortals" type="Node3D" parent="Room" unique_id=44787327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.201231)
 
 [node name="Portal3D" type="Node3D" parent="Room/TeleportPortals" unique_id=1348653865 node_paths=PackedStringArray("exit_portal") groups=["portals"]]
 process_priority = 100
 process_physics_priority = 100
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.6737375, 1.2659152, 16.002272)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.6737375, 1.2659152, 15.807739)
 script = ExtResource("3_p70al")
 _portal_mesh_path = NodePath("Portal3D_Mesh")
 _teleport_area_path = NodePath("TeleportArea")
@@ -196,7 +232,8 @@ mesh = SubResource("ArrayMesh_q2d71")
 [node name="TeleportArea" type="Area3D" parent="Room/TeleportPortals/Portal3D" unique_id=260497]
 
 [node name="Collider" type="CollisionShape3D" parent="Room/TeleportPortals/Portal3D/TeleportArea" unique_id=1707557527]
-shape = SubResource("BoxShape3D_uo7di")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022888184, 0, 0.13012505)
+shape = SubResource("BoxShape3D_kn06e")
 
 [node name="Frame" type="MeshInstance3D" parent="Room/TeleportPortals/Portal3D" unique_id=1588391275]
 transform = Transform3D(0.13, 0, 0, 0, 2.56, 0, 0, 0, 0.155, 1.0596054, 0, 0)
@@ -216,10 +253,23 @@ layers = 524288
 material_override = SubResource("StandardMaterial3D_p70al")
 mesh = SubResource("BoxMesh_45d1s")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/TeleportPortals/Portal3D/Frame2" unique_id=2091907101]
+transform = Transform3D(1, -1.1368683e-13, 4.2351647e-22, 1.914891e-23, 0.99999994, 0, -2.1175824e-22, -1.1368684e-13, 0.99999994, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/TeleportPortals/Portal3D/Frame2/StaticBody3D" unique_id=2094915518]
+transform = Transform3D(1, -3.9790393e-13, 2.1175824e-21, 2.2204463e-16, 1.0000001, -4.440892e-15, 2.9646153e-21, 1.1368684e-13, 1.0000001, 0, 0, 0)
+shape = SubResource("BoxShape3D_ti1bm")
+
+[node name="Frame4" type="MeshInstance3D" parent="Room/TeleportPortals/Portal3D" unique_id=319443236]
+transform = Transform3D(2.43949, 0, 8.881784e-16, 0, 2.56, 0, 2.842171e-14, 0, 0.1550001, 0.016246319, 0, -0.15758324)
+layers = 524288
+material_override = SubResource("StandardMaterial3D_p70al")
+mesh = SubResource("BoxMesh_45d1s")
+
 [node name="Portal3D2" type="Node3D" parent="Room/TeleportPortals" unique_id=555058162 node_paths=PackedStringArray("exit_portal") groups=["portals"]]
 process_priority = 100
 process_physics_priority = 100
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.3836658, 1.2583144, 16.061462)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.3836658, 1.2583144, 15.86693)
 script = ExtResource("3_p70al")
 _portal_mesh_path = NodePath("Portal3D_Mesh")
 _teleport_area_path = NodePath("TeleportArea")
@@ -259,23 +309,66 @@ layers = 524288
 material_override = SubResource("StandardMaterial3D_p70al")
 mesh = SubResource("BoxMesh_45d1s")
 
+[node name="Frame4" type="MeshInstance3D" parent="Room/TeleportPortals/Portal3D2" unique_id=2008874134]
+transform = Transform3D(2.334052, 0, 8.881784e-16, 0, 2.56, 0, 1.4210855e-14, 0, 0.1550001, 0.022219181, 0, -0.15758324)
+layers = 524288
+material_override = SubResource("StandardMaterial3D_p70al")
+mesh = SubResource("BoxMesh_45d1s")
+
 [node name="Frame2" type="MeshInstance3D" parent="Room/TeleportPortals/Portal3D2" unique_id=1979634395]
 transform = Transform3D(-5.6824803e-09, -2.268, 0, 0.13, -9.9137424e-08, 0, 0, 0, 0.155, 0.015795708, 1.3081121, 0)
 layers = 524288
 material_override = SubResource("StandardMaterial3D_p70al")
 mesh = SubResource("BoxMesh_45d1s")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/TeleportPortals/Portal3D2/Frame2" unique_id=603170615]
+transform = Transform3D(1, -1.1368683e-13, 4.2351647e-22, 1.914891e-23, 0.99999994, 0, -2.1175824e-22, -1.1368684e-13, 0.99999994, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/TeleportPortals/Portal3D2/Frame2/StaticBody3D" unique_id=1421667470]
+transform = Transform3D(1, 5.6843426e-14, 0, 2.2204463e-16, 1.0000001, 0, 4.2351647e-22, 1.1368684e-13, 1.0000001, 0, 0, 0)
+shape = SubResource("BoxShape3D_ti1bm")
+
 [node name="TeleportArea" type="Area3D" parent="Room/TeleportPortals/Portal3D2" unique_id=1806507803]
 
 [node name="Collider" type="CollisionShape3D" parent="Room/TeleportPortals/Portal3D2/TeleportArea" unique_id=589901745]
-shape = SubResource("BoxShape3D_uo7di")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004764557, 0, 0.15795898)
+shape = SubResource("BoxShape3D_7yo87")
 
 [node name="ShorterLongerPortals" type="Node3D" parent="Room" unique_id=1165294967]
 
-[node name="Portal3D2" type="Node3D" parent="Room/ShorterLongerPortals" unique_id=180303650 node_paths=PackedStringArray("exit_portal") groups=["portals"]]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/ShorterLongerPortals" unique_id=1306024202]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=276125821]
+transform = Transform3D(0.32470787, 0, 0, 0, 4.5432134, 0, 0, 0, 11.946164, -11.73348, 0.43608665, -0.28736258)
+material_override = SubResource("StandardMaterial3D_45d1s")
+mesh = SubResource("BoxMesh_y7y61")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=1723580285]
+transform = Transform3D(0.32470787, 0, 0, 0, 4.5432134, 0, 0, 0, 11.946164, -14.357621, 0.43608665, -0.28736258)
+material_override = SubResource("StandardMaterial3D_45d1s")
+mesh = SubResource("BoxMesh_y7y61")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=1541567158]
+transform = Transform3D(-1.419343e-08, 2.9541495, 0, -0.32470787, -1.2912999e-07, 0, 0, 0, 12.293222, -13.054988, 2.5475163, -0.28736258)
+material_override = SubResource("StandardMaterial3D_45d1s")
+mesh = SubResource("BoxMesh_y7y61")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=469651132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.356538, 1.085022, -0.2911682)
+shape = SubResource("BoxShape3D_y7y61")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=1567482937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.73559, 1.085022, -0.2911682)
+shape = SubResource("BoxShape3D_y7y61")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=1350748319]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -13.04771, 2.545744, -0.2968979)
+shape = SubResource("BoxShape3D_q2d71")
+
+[node name="Portal3D2" type="Node3D" parent="Room/ShorterLongerPortals" unique_id=1024304399 node_paths=PackedStringArray("exit_portal") groups=["portals"]]
 process_priority = 100
 process_physics_priority = 100
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -13.044933, 1.2583144, 5.4451666)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.10687, 1.1934221, -5.7610226)
 script = ExtResource("3_p70al")
 _portal_mesh_path = NodePath("Portal3D_Mesh")
 _teleport_area_path = NodePath("TeleportArea")
@@ -289,30 +382,30 @@ portal_render_layer = 524288
 is_teleport = true
 teleport_direction = 0
 rigidbody_boost = 0.0
-teleport_tolerance = 0.3
+teleport_tolerance = 0.5
 teleport_interactions = 3
 teleport_collision_mask = 32768
 start_deactivated = false
 metadata/_custom_type_script = "uid://cw1r4c1d7beyv"
 metadata/_edit_group_ = true
 
-[node name="Portal3D_Mesh" type="MeshInstance3D" parent="Room/ShorterLongerPortals/Portal3D2" unique_id=310460392]
-transform = Transform3D(1.1993707, 0, 0, 0, 1, 0, 0, 0, 0.05, 0, 0, 0)
+[node name="Portal3D_Mesh" type="MeshInstance3D" parent="Room/ShorterLongerPortals/Portal3D2" unique_id=1095628308]
+transform = Transform3D(1.1599215, 0, 0, 0, 0.9603868, 0, 0, 0, 0.05, 0.055106163, -1.1920929e-07, 0)
 layers = 524288
 material_override = ExtResource("4_45d1s")
 cast_shadow = 0
-mesh = SubResource("ArrayMesh_q2d71")
+mesh = SubResource("ArrayMesh_p70al")
 
-[node name="TeleportArea" type="Area3D" parent="Room/ShorterLongerPortals/Portal3D2" unique_id=315993553]
+[node name="TeleportArea" type="Area3D" parent="Room/ShorterLongerPortals/Portal3D2" unique_id=662176259]
 
-[node name="Collider" type="CollisionShape3D" parent="Room/ShorterLongerPortals/Portal3D2/TeleportArea" unique_id=333918491]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007385254, 0, 0)
+[node name="Collider" type="CollisionShape3D" parent="Room/ShorterLongerPortals/Portal3D2/TeleportArea" unique_id=1033306071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07260513, 0.007598877, 0)
 shape = SubResource("BoxShape3D_uo7di")
 
-[node name="Portal3D3" type="Node3D" parent="Room/ShorterLongerPortals" unique_id=1386153899 node_paths=PackedStringArray("exit_portal") groups=["portals"]]
+[node name="Portal3D3" type="Node3D" parent="Room/ShorterLongerPortals" unique_id=350781285 node_paths=PackedStringArray("exit_portal") groups=["portals"]]
 process_priority = 100
 process_physics_priority = 100
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.044933, 1.2583144, -4.8008857)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.10687, 1.1934221, 5.18075)
 script = ExtResource("3_p70al")
 _portal_mesh_path = NodePath("Portal3D_Mesh")
 _teleport_area_path = NodePath("TeleportArea")
@@ -333,29 +426,15 @@ start_deactivated = false
 metadata/_custom_type_script = "uid://cw1r4c1d7beyv"
 metadata/_edit_group_ = true
 
-[node name="Portal3D_Mesh" type="MeshInstance3D" parent="Room/ShorterLongerPortals/Portal3D3" unique_id=299663533]
-transform = Transform3D(1.1993707, 0, 0, 0, 1, 0, 0, 0, 0.05, 0, 0, 0)
+[node name="Portal3D_Mesh" type="MeshInstance3D" parent="Room/ShorterLongerPortals/Portal3D3" unique_id=302374445]
+transform = Transform3D(1.1599215, 0, 0, 0, 0.9603868, 0, 0, 0, 0.05, 0.055106163, -1.1920929e-07, 0)
 layers = 524288
 material_override = ExtResource("4_45d1s")
 cast_shadow = 0
-mesh = SubResource("ArrayMesh_q2d71")
+mesh = SubResource("ArrayMesh_p70al")
 
-[node name="TeleportArea" type="Area3D" parent="Room/ShorterLongerPortals/Portal3D3" unique_id=1019432711]
+[node name="TeleportArea" type="Area3D" parent="Room/ShorterLongerPortals/Portal3D3" unique_id=1061519009]
 
-[node name="Collider" type="CollisionShape3D" parent="Room/ShorterLongerPortals/Portal3D3/TeleportArea" unique_id=598932961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007385254, 0, 0)
-shape = SubResource("BoxShape3D_uo7di")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Room/ShorterLongerPortals" unique_id=1306024202]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=276125821]
-transform = Transform3D(0.32470787, 0, 0, 0, 4.5432134, 0, 0, 0, 11.946164, -11.73348, 0.43608665, -0.28736258)
-mesh = SubResource("BoxMesh_y7y61")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=1723580285]
-transform = Transform3D(0.32470787, 0, 0, 0, 4.5432134, 0, 0, 0, 11.946164, -14.357621, 0.43608665, -0.28736258)
-mesh = SubResource("BoxMesh_y7y61")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Room/ShorterLongerPortals/StaticBody3D" unique_id=1541567158]
-transform = Transform3D(-1.419343e-08, 2.9541495, 0, -0.32470787, -1.2912999e-07, 0, 0, 0, 12.293222, -13.054988, 2.5475163, -0.28736258)
-mesh = SubResource("BoxMesh_y7y61")
+[node name="Collider" type="CollisionShape3D" parent="Room/ShorterLongerPortals/Portal3D3/TeleportArea" unique_id=725348464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06317711, 0.007598877, 0)
+shape = SubResource("BoxShape3D_op4cu")

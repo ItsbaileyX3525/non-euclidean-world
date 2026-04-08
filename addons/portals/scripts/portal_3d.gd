@@ -516,6 +516,8 @@ func _process_cameras() -> void:
 	
 	portal_mesh.scale.z *= signf(portal_shift) # Turn the portal towards the player
 	
+	var dir_to_player = (player_camera.global_position - global_position).normalized()
+	portal_mesh.global_position = global_position + (dir_to_player * 0.01)
 
 func _process_teleports() -> void:
 	for body_id: int in _watchlist_teleportables.keys():
@@ -526,7 +528,12 @@ func _process_teleports() -> void:
 		var tp_meta: TeleportableMeta = _watchlist_teleportables.get(body_id)
 		var body = instance_from_id(body_id) as Node3D
 		var last_fw_angle: float = tp_meta.forward
-		var current_fw_angle: float = forward_distance(body)
+		# If it's the player, check the distance from the CAMERA, not the body
+		var current_fw_angle: float
+		if tp_meta.is_player:
+			current_fw_angle = forward_distance(player_camera)
+		else:
+			current_fw_angle = forward_distance(body)
 		
 		var should_teleport: bool = false
 		match teleport_direction:
@@ -601,8 +608,16 @@ func _calculate_near_plane() -> float:
 	var d_3: float = (corner_3 - portal_camera.global_position).dot(camera_forward)
 	var d_4: float = (corner_4 - portal_camera.global_position).dot(camera_forward)
 	
-	# The near clip distance is the shortest distance which still contains all the corners
-	return max(0.01, min(d_1, d_2, d_3, d_4) - exit_portal.portal_frame_width)
+# The near clip distance is the shortest distance which still contains all the corners
+	var final_near = max(0.001, min(d_1, d_2, d_3, d_4) - exit_portal.portal_frame_width)
+	
+	# AGGRESSIVE FIX: If the player camera is extremely close to this portal,
+	# force the portal camera's near clip to be almost zero.
+	var dist_to_portal = forward_distance(player_camera)
+	if abs(dist_to_portal) < 0.1:
+		return 0.001
+		
+	return final_near
 
 func _setup_mesh() -> void:
 	if portal_mesh:
