@@ -1,0 +1,39 @@
+[gd_resource type="Theme" format=3 uid="uid://nx043lj7ygix"]
+
+[ext_resource type="FontFile" uid="uid://ockgy3863kmb" path="res://Assets/Fonts/PlaywriteIE-VariableFont_wght.ttf" id="1_i5fhn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fm7i0"]
+bg_color = Color(0.56846833, 0.5268688, 0.7024033, 1)
+border_width_left = 2
+border_width_top = 3
+border_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v71m"]
+bg_color = Color(0.61086655, 0.5715632, 0.7403484, 1)
+border_width_left = 2
+border_width_top = 3
+border_color = Color(0.25565886, 0.2556588, 0.2556586, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5fhn"]
+bg_color = Color(0.52515876, 0.48217225, 0.66052693, 1)
+border_width_left = 1
+border_width_top = 2
+border_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[resource]
+default_font = ExtResource("1_i5fhn")
+Button/styles/hover = SubResource("StyleBoxFlat_fm7i0")
+Button/styles/normal = SubResource("StyleBoxFlat_0v71m")
+Button/styles/pressed = SubResource("StyleBoxFlat_i5fhn")

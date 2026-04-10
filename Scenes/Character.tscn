@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://dvxqkd5kxulb0"]
 
 [ext_resource type="Script" uid="uid://c55h43wuacxq7" path="res://Scripts/character.gd" id="1_0y7nr"]
+[ext_resource type="Texture2D" uid="uid://c1dd6n3rtaqlw" path="res://Assets/Textures/Crosshair.png" id="2_jo2ib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0j3ql"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jo2ib"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0y7nr"]
 
 [node name="Character" type="CharacterBody3D" unique_id=816698772]
 collision_layer = 32769
@@ -19,5 +22,94 @@ layers = 32769
 mesh = SubResource("CapsuleMesh_jo2ib")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1278889163]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63881767, -0.2903226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63881767, -0.014494032)
 near = 0.001
+
+[node name="ItemPlaceholder" type="MeshInstance3D" parent="Camera3D" unique_id=602081514]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.36658883, -0.21117806, -0.46860218)
+visible = false
+mesh = SubResource("BoxMesh_0y7nr")
+
+[node name="InteractRaycast" type="RayCast3D" parent="Camera3D" unique_id=2010554734]
+transform = Transform3D(1, 0, 0, 0, -8.009675e-08, -21.67608, 0, 1.8323998, -9.474915e-07, 0, -0.03325206, -0.1622161)
+collision_mask = 8
+
+[node name="Control" type="Control" parent="." unique_id=1598427714]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pickup" type="Label" parent="Control" unique_id=548905232]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -138.0
+offset_right = 1405.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.26883596, 0.26883596)
+theme_override_font_sizes/font_size = 150
+text = "Press E to pickup item"
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=677119804]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -30.0
+offset_right = 35.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.71641415, 0.71641415)
+texture = ExtResource("2_jo2ib")
+
+[node name="ammo" type="Label" parent="Control" unique_id=1097812279]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -35.0
+offset_right = 1085.0
+offset_bottom = 170.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.16861826, 0.16861826)
+theme_override_font_sizes/font_size = 150
+text = "Banana ammo: 10"
+
+[node name="SpeakShit" type="Control" parent="Control" unique_id=1234691763]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/SpeakShit" unique_id=191421084]
+layout_mode = 0
+offset_top = 565.00006
+offset_right = 5121.103
+offset_bottom = 1186.0
+scale = Vector2(0.24994615, 0.24994615)
+theme_override_font_sizes/font_size = 150
+text = "Well "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
